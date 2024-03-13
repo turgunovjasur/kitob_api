@@ -12,7 +12,7 @@ from kitob_app.serializers import ProductSerializer
 
 
 class CustomPagination(PageNumberPagination):
-    page_size = 3
+    page_size = 5
 
 
 class ProductViewSet(viewsets.ModelViewSet):
@@ -54,7 +54,7 @@ class ProductViewSet(viewsets.ModelViewSet):
     def top_rated(self, request):
 
         # Assuming a related name of "reviews" from Review model to Product model
-        top_products = Product.objects.annotate(avg_rating=models.Avg('reviews__rating')).order_by('-avg_rating')[:2]
+        top_products = Product.objects.annotate(avg_rating=models.Avg('reviews__rating')).order_by('-avg_rating')[:3]
         serializer = ProductSerializer(top_products, many=True)
         return Response(serializer.data)
 
