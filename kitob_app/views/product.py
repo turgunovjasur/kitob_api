@@ -24,12 +24,20 @@ class ProductViewSet(viewsets.ModelViewSet):
 
     filter_backends = (django_filters.DjangoFilterBackend, filters.SearchFilter)
     filterset_class = ProductFilter
-    search_fields = ['name', 'category', 'price']
+    search_fields = ['name', 'category', 'author']
 
     def list(self, request, *args, **kwargs):
         category = request.query_params.get('category', None)
+        name = request.query_params.get('name', None)
+        author = request.query_params.get('author', None)
+
         if category:
             self.queryset = self.queryset.filter(category=category)
+        if name:
+            self.queryset = self.queryset.filter(name=name)
+        if author:
+            self.queryset = self.queryset.filter(author=author)
+
         return super().list(request, *args, **kwargs)
 
     def retrieve(self, request, *args, **kwargs):

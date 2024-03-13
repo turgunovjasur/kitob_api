@@ -16,7 +16,7 @@ class Review(models.Model):
         return f"{self.product.name} - {self.rating}"
 
 
-class FlashSale(models.Model):
+class FlashSale(models.Model):  # Chegirma
     product = models.OneToOneField(Product, on_delete=models.CASCADE)
     discount_percentage = models.PositiveIntegerField()  # e.g., 20 means 20% off
     start_time = models.DateTimeField()
@@ -30,7 +30,7 @@ class FlashSale(models.Model):
         unique_together = ('product', 'start_time', 'end_time')
 
 
-class ProductViewHistory(models.Model):
+class ProductViewHistory(models.Model):  # Ko'rilganlik tarix
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     timestamp = models.DateTimeField(auto_now_add=True)
