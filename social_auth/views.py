@@ -13,7 +13,7 @@ class GoogleSocialAuthView(GenericAPIView):
 
         POST with "auth_token"
 
-        Send an idtoken as from google to get user information
+        Send an idtoken as from Google to get user information
 
         """
 

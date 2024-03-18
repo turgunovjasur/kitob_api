@@ -41,9 +41,13 @@ INSTALLED_APPS = [
 
     # config
     'rest_framework',
+    'rest_framework_simplejwt.token_blacklist',
+    'drf_yasg',
 
     # apps
     'kitob_app',
+    'social_auth',
+    'authentication',
 ]
 
 SWAGGER_SETTINGS = {
@@ -59,6 +63,7 @@ SWAGGER_SETTINGS = {
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -80,7 +85,6 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'django.template.context_processors.request',
             ],
         },
     },
@@ -150,6 +154,8 @@ LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
+
+USE_L10N = True
 
 USE_TZ = True
 

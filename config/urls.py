@@ -17,7 +17,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import permissions
-from rest_framework.schemas import get_schema_view, openapi
+from rest_framework.schemas import get_schema_view
+from drf_yasg import openapi
+
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -34,6 +36,7 @@ schema_view = get_schema_view(
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('auth/', include('authentication.urls')),
     path('social_auth/', include(('social_auth.urls', 'social_auth'),
                                  namespace="social_auth")),
     path('kitob_app/', include('kitob_app.urls')),
